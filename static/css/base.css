@@ -1,0 +1,43 @@
+.menu-item {
+    color: white;
+    list-style: none;
+}
+
+.menu-item a {
+    color: white;
+    text-decoration: none;
+}
+
+.logo h1{
+    font-size: 16px;
+    color: white;
+    margin-top: 15px;
+    margin-bottom: 0%;
+}
+
+.menu-item-user {
+    list-style: none;
+}
+
+.menu-item-user a {
+    color: white;
+    text-decoration: none;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    max-height: 10%;
+}
+
+li {
+    display: inline-block;
+    margin-right: 25px;
+    margin-top: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 0%;
+    margin-bottom: 0%;
+    font-size: 14px;
+}
+

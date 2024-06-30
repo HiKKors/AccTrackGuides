@@ -1,0 +1,71 @@
+.filter {
+    background-color: rgb(44, 45, 43);
+    width: 15%;
+}
+
+.guides-serching {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.guides-serching h1 {
+    margin-right: 20%;
+}
+
+.search-guides {
+    margin-top: 20px;
+}
+
+.search-string {
+    margin-right: 20px;
+    width: 550px;
+}
+
+.search-button {
+    margin-top: 20px;
+}
+
+.guide-preview {
+    padding-top: 0%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    outline: 2px solid #000; 
+    padding: 0px 20px 0px 20px;
+    background-color: rgb(66, 66, 66);
+    margin-top: 5px;
+    width: 75%;
+}
+
+.filter-menu {
+    width: 100%;
+}
+
+.container, .filter-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+}
+
+.guide-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    text-align: right;
+}
+
+.guide-title {
+    color: #fff;
+}
+
+.car-settings, .other-guides {
+    display: flex;
+    flex-direction: row;
+}

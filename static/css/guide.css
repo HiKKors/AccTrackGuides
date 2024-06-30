@@ -1,0 +1,78 @@
+.title {
+    text-align: center;
+    color: #fff;
+}
+
+.front-tyres-settings {
+    display: flex;
+    flex-direction: row;
+}
+
+.rear-tyres-settings {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.right-front-settings, .right-rear-settings {
+    margin-left: 10px;
+}
+
+.front-suspension-settings {
+    display: flex;
+    flex-direction: row;
+}
+
+.rear-suspension-settings {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.front-dumpers-settings {
+    display: flex;
+    flex-direction: row;
+}
+
+.rear-dumpers-settings {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.right-suspension-settings {
+    margin-left: 10px;
+}
+
+.right-rear-dumper, .right-front-dumper {
+    margin-left: 10px;
+}
+
+.right-front-settings, .right-rear-settings, .left-rear-settings, .left-front-settings, .electronics, .front-mechanical-grip, .rear-mechanical-grip, .left-front-dumper, .right-front-dumper, .left-rear-dumper, .right-rear-dumper,
+.rear-aerodynamics, .front-aerodynamics {
+    border-radius: 5px;
+    width: 410px;
+    background-color: rgb(49, 49, 47);
+}
+
+.setup-part {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 7px;
+    color: #fff;
+    background-color: rgb(38, 38, 38);
+    padding: 10px;
+    border: 3px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h4 {
+    text-align: center;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.setup-title {
+    padding-top: 25px;
+}

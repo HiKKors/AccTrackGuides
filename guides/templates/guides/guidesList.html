@@ -1,0 +1,52 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/guides.css' %}">
+{% endblock %}
+
+{% block content %}
+<main>
+    <div class="search-and-filter">
+        
+    </div>
+    <div class="guides-serching">
+        <h1 style="color: white; font-size: 24px">ТРЕК ГАЙДЫ</h1>
+
+        <div class="search-guides">
+            <input class="search-string" type="text">
+        </div>
+        <div class="search-button">
+            <input type="button" value="Найти">
+        </div>
+    </div>
+
+    <div class="filter-menu">
+        <menu class="filter">
+            <form action="{% url 'guides-list' %}" method="get">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" value="Применить">
+            </form>
+        </menu>
+    </div>
+    {% for guide in guides %}
+    <div class="container">
+        <div class="guide-preview">
+            <div class="guide-title">
+                <h3>{{ guide.trackName.name }} на {{guide.carName.name}} за {{guide.time}}</h3>
+            </div>
+            <div class="images">
+                <img src="{{guide.trackName.image.url}}" alt="" width="150px" height="150px">
+                <img src="{{guide.carName.image.url}}" alt="" width="250px" height="150px">
+            </div>
+            <form action="{% url 'guide' guide.id %}">
+                <input class="view-guide" type="submit" value="Подробнее">
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+
+</main>
+
+{% endblock %}
