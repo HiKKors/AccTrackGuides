@@ -76,3 +76,23 @@ h4 {
 .setup-title {
     padding-top: 25px;
 }
+
+main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.other-guide-url {
+    text-decoration: none;
+    color: #fff;
+    font-size: 20px;
+}
+
+.other-guide-url:hover {
+    color: #b24949;
+}
+
+.other-guide-url:visited {
+    color: #6c6c6c;
+}

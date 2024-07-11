@@ -320,9 +320,10 @@
             </div>
         </div>
     </div>
-    <div class="other-guides">
+    <div class="other-guides" style="color: #fff;">
+        <h3>Другие гайды для {{ guide.carName.name }}</h3>
         {% for other_guide in related_guides %}
-        <a href="{% url 'guide' other_guide.id %}">{{other_guide}}</a>
+        <a href="{% url 'guide' other_guide.id %}" class="other-guide-url">{{other_guide.trackName.name}}</a>
         {% endfor %}
     </div>
 </main>

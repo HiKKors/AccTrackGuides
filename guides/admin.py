@@ -6,3 +6,5 @@ from .models import GuideData, Car, Track
 admin.site.register(GuideData)
 admin.site.register(Car)
 admin.site.register(Track)
+
+admin.AdminSite.site_url = '/news'

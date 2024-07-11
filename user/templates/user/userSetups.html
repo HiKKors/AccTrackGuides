@@ -1,0 +1,18 @@
+{% extends 'news/base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+<main>
+    <div class="user-setups">
+        <h2>Мои сетапы</h2>
+        <div class="container">
+            <p>{{user_setups}}</p>
+        </div>
+    </div>
+    <div class="add_setup">
+        <a href="{% url 'user:userSetup' %}">Добавить</a>
+    </div>
+</main>
+{% endblock %}

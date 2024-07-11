@@ -8,38 +8,19 @@ from django.views.generic.detail import DetailView
 
 from .models import GuideData, Car, Track
 
-
-# Create your views here.
-# def guidesList(request):
-    
-#     form = GuideFilterForm()
-#     #form.base_fields['car'].choices = car_by_class['gt2']
-    
-#     # print(car_by_class['gt2'])
-#     if request.method == 'POST':
-#         form = GuideFilterForm(request.POST)
-        
-#         ####print(form.base_fields['track'].choices) 
-        
-#         if form.is_valid():
-#             track = form.cleaned_data['track']
-#             gt2_cars = form.cleaned_data['gt2_cars']
-#             gt3_cars = form.cleaned_data['gt3_cars']
-#             gt4_cars = form.cleaned_data['gt4_cars']
-#             # Логика обработки данных
-#     return render(request, 'Guides/guidesList.html', {'form': form})
-
 class Guides(ListView):
     queryset = GuideData.objects.all()
     
     context_object_name = 'guides'
     template_name = 'Guides/guidesList.html'
     
+    # фильтрация данных
     def get_queryset(self):
         queryset = super().get_queryset()
         self.filterset = GuideFilter(self.request.GET, queryset=queryset)
         return self.filterset.qs
     
+    # контекстные данные 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['form'] = self.filterset.form

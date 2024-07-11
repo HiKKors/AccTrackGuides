@@ -27,12 +27,27 @@
         </div>
         <div class="user-menu">
             <ul class="user-list">
+                {% if request.user.is_authenticated %}
+                    {% if request.user.is_superuser %}
+                    <li class="menu-item-user">
+                        <a class="link" href="{% url 'admin:index' %}">Админка</a>
+                    </li>
+                    {% else %}
+                    <li class="menu-item-user">
+                        <a class="link" href="{% url 'user:my-setups' %}">Мои сетапы</a>
+                    </li>
+                    <li class="menu-item-user">
+                        <a class="link" href="#">Мой аккаунт</a>
+                    </li>
+                    {% endif %}
+                {% else %}
                 <li class="menu-item-user">
                     <a class="link" href="{% url 'user:login' %}">Вход</a>
                 </li>
                 <li class="menu-item-user">
                     <a href="{% url 'user:register' %}">Регистрация</a>
                 </li>
+                {% endif %}
             </ul>
         </div>
     </header>
