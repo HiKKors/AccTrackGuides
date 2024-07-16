@@ -6,329 +6,334 @@
 {% endblock %}
 
 {% block content %}
-<div class="title">
-    <h2>{{ guide.trackName.name }} на {{guide.carName.name}} за {{guide.time}}</h2>
-</div>
-<div class="guide-video" style="text-align: center;">
-    <iframe width="1280" height="720 " src="{{ guide.video_url }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
-<main>
-    <div class="car-settings">
-        <div class="tyres">
-            <div class="front-tyres-settings">
-                <div class="left-front-settings">
-                    <h4>Передняя левая шина</h4>
-                    <div class="setup-part">
-                        <div class="lfs-part-name">Pressure (Давление)</div>
-                        <div class="lfs-part-value">{{guide.carSettings.lf_psi}} psi</div>
+
+    {% block guide-info %}
+        <div class="title">
+            <h2>{{ guide.trackName.name }} на {{guide.carName.name}} за {{guide.time}}</h2>
+        </div>
+    {% endblock %}
+
+    {% block video %}
+        <div class="guide-video" style="text-align: center;">
+            <iframe width="1280" height="720 " src="{{ guide.video_url }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    {% endblock %}
+    <main>
+        <div class="car-settings">
+            <div class="tyres">
+                <div class="front-tyres-settings">
+                    <div class="left-front-settings">
+                        <h4>Передняя левая шина</h4>
+                        <div class="setup-part">
+                            <div class="lfs-part-name">Pressure (Давление)</div>
+                            <div class="lfs-part-value">{{guide.carSettings.lf_psi}} psi</div>
+                        </div>
+                        <div class="setup-part">
+                            <div class="lfs-part-name">Toe (Схождение)</div>
+                            <div class="lfs-part-value">{{guide.carSettings.lf_toe}}°</div>
+                        </div>
+                        <div class="setup-part">
+                            <div class="lfs-part-name">Camber (Развал)</div>
+                            <div class="lfs-part-value">{{guide.carSettings.lf_camber}}°</div>
+                        </div>
+                        <div class="setup-part">
+                            <div class="lfs-part-name">Caster (Кастор)</div>
+                            <div class="lfs-part-value">{{guide.carSettings.lf_caster}}°</div>
+                        </div>
                     </div>
-                    <div class="setup-part">
-                        <div class="lfs-part-name">Toe (Схождение)</div>
-                        <div class="lfs-part-value">{{guide.carSettings.lf_toe}}°</div>
-                    </div>
-                    <div class="setup-part">
-                        <div class="lfs-part-name">Camber (Развал)</div>
-                        <div class="lfs-part-value">{{guide.carSettings.lf_camber}}°</div>
-                    </div>
-                    <div class="setup-part">
-                        <div class="lfs-part-name">Caster (Кастор)</div>
-                        <div class="lfs-part-value">{{guide.carSettings.lf_caster}}°</div>
+                    <div class="right-front-settings">
+                        <h4>Передняя правая шина</h4>
+                        <div class="setup-part">
+                            <div class="rfs-part-name">Pressure (Давление)</div>
+                            <div class="rfs-part-value">{{guide.carSettings.rf_psi}} psi</div>
+                        </div>
+                        <div class="setup-part">
+                            <div class="rfs-part-name">Toe (Схождение)</div>
+                            <div class="rfs-part-value">{{guide.carSettings.rf_toe}}°</div>
+                        </div>
+                        <div class="setup-part">
+                            <div class="rfs-part-name">Camber (Развал)</div>
+                            <div class="rfs-part-value">{{guide.carSettings.rf_camber}}°</div>
+                        </div>
+                        <div class="setup-part">
+                            <div class="rfs-part-name">Caster (Кастор)</div>
+                            <div class="rfs-part-value">{{guide.carSettings.rf_caster}}°</div>
+                        </div>
                     </div>
                 </div>
-                <div class="right-front-settings">
-                    <h4>Передняя правая шина</h4>
-                    <div class="setup-part">
-                        <div class="rfs-part-name">Pressure (Давление)</div>
-                        <div class="rfs-part-value">{{guide.carSettings.rf_psi}} psi</div>
+                <div class="rear-tyres-settings">
+                    <div class="left-rear-settings">
+                        <h4>Задняя левая шина</h4>
+                        <div class="setup-part">
+                            <div class="lrs-part-name">Pressure (Давление)</div>
+                            <div class="lrs-part-value">{{guide.carSettings.lr_psi}} psi</div>
+                        </div>
+                        <div class="setup-part">
+                            <div class="lrs-part-name">Toe (Схождение)</div>
+                            <div class="lrs-part-value">{{guide.carSettings.lr_toe}}°</div>
+                        </div>
+                        <div class="setup-part">
+                            <div class="lrs-part-name">Camber (Развал)</div>
+                            <div class="lrs-part-value">{{guide.carSettings.lr_camber}}°</div>
+                        </div>
                     </div>
-                    <div class="setup-part">
-                        <div class="rfs-part-name">Toe (Схождение)</div>
-                        <div class="rfs-part-value">{{guide.carSettings.rf_toe}}°</div>
-                    </div>
-                    <div class="setup-part">
-                        <div class="rfs-part-name">Camber (Развал)</div>
-                        <div class="rfs-part-value">{{guide.carSettings.rf_camber}}°</div>
-                    </div>
-                    <div class="setup-part">
-                        <div class="rfs-part-name">Caster (Кастор)</div>
-                        <div class="rfs-part-value">{{guide.carSettings.rf_caster}}°</div>
+                    <div class="right-rear-settings">
+                        <h4>Задняя правая шина</h4>
+                        <div class="setup-part">
+                            <div class="rrs-part-name">Pressure (Давление)</div>
+                            <div class="rrs-part-value">{{guide.carSettings.rr_psi}} psi</div>
+                        </div>
+                        <div class="setup-part">
+                            <div class="rrs-part-name">Toe (Схождение)</div>
+                            <div class="rrs-part-value">{{guide.carSettings.rr_toe}}°</div>
+                        </div>
+                        <div class="setup-part">
+                            <div class="rrs-part-name">Camber (Развал)</div>
+                            <div class="rrs-part-value">{{guide.carSettings.rr_camber}}°</div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="rear-tyres-settings">
-                <div class="left-rear-settings">
-                    <h4>Задняя левая шина</h4>
-                    <div class="setup-part">
-                        <div class="lrs-part-name">Pressure (Давление)</div>
-                        <div class="lrs-part-value">{{guide.carSettings.lr_psi}} psi</div>
+            <div class="electronics" style="width: 830px;">
+                <h4 class="setup-title">Электроника</h4>
+                <div class="setup-part">
+                    <div class="electronic-part-name">TC</div>
+                    <div class="electromic-value">{{guide.carSettings.TC}}</div>
+                </div>
+                <div class="setup-part">
+                    <div class="electronic-part-name">ABS</div>
+                    <div class="electromic-value">{{guide.carSettings.ABS}}</div>
+                </div>
+                <div class="setup-part">
+                    <div class="electronic-part-name">ECUMap</div>
+                    <div class="electromic-value">{{guide.carSettings.ECUMap}}</div>
+                </div>
+                <div class="setup-part">
+                    <div class="electronic-part-name">Telemetry laps</div>
+                    <div class="electromic-value">{{guide.carSettings.telemetry_laps}}</div>
+                </div>
+                <div class="setup-part">
+                    <div class="electronic-part-name">TC2</div>
+                    <div class="electromic-value">{{guide.carSettings.TC2}}</div>
+                </div>
+            </div>
+            <div class="front-mechanical-grip" style="width: 830px;">
+                <h4 class="setup-title">Механическое сцепление (Mechanical grip). Перед</h4>
+                <div class="setup-part">
+                    <div class="mgrip-part-name">Передний стабилизатор поперечной устойчивости (Anti-Roll Bar)</div>
+                    <div class="mgrip-part-value">{{guide.carSettings.f_antiroll_bar}}</div>
+                </div>
+                <div class="setup-part">
+                    <div class="mgrip-part-name">Усилие тормозов (brake Power)</div>
+                    <div class="mgrip-part-value">{{guide.carSettings.brake_power}}%</div>
+                </div>
+                <div class="setup-part">
+                    <div class="mgrip-part-name">Распределените тормозного усилия (brake bias)</div>
+                    <div class="mgrip-part-value">{{guide.carSettings.brake_bias}}%</div>
+                </div>
+                <div class="setup-part">
+                    <div class="mgrip-part-name">Коэффициент рулевого управления (steer ratio)</div>
+                    <div class="mgrip-part-value">{{guide.carSettings.steer_ratio}}%</div>
+                </div>
+            </div>
+            <div class="suspensions">
+                <div class="front-suspension-settings">
+                    <div class="left-front-settings">
+                        <h4>Передняя левая подвеска (Left Front)</h4>
+                        <div class="setup-part">
+                            <div class="lfs-part-name">Жесткость подвески (Wheel Rate)</div>
+                            <div class="lfs-part-value">{{ guide.carSettings.lf_wheel_rate }} N/m</div>
+                        </div>
+                        <div class="setup-part">
+                            <div class="lfs-part-name">Жесткость ограничителя (Bumpstop rate)</div>
+                            <div class="lfs-part-value">{{ guide.carSettings.lf_bumpstop_rate }} N</div>
+                        </div>
+                        <div class="setup-part">
+                            <div class="lfs-part-name">Диапазон ограничителей (Bumpstop range)</div>
+                            <div class="lfs-part-value">{{ guide.carSettings.lf_bumpstop_range }}</div>
+                        </div>
                     </div>
-                    <div class="setup-part">
-                        <div class="lrs-part-name">Toe (Схождение)</div>
-                        <div class="lrs-part-value">{{guide.carSettings.lr_toe}}°</div>
-                    </div>
-                    <div class="setup-part">
-                        <div class="lrs-part-name">Camber (Развал)</div>
-                        <div class="lrs-part-value">{{guide.carSettings.lr_camber}}°</div>
+                    <div class="right-front-settings">
+                        <h4>Передняя правая подвеска (Right Front)</h4>
+                        <div class="setup-part">
+                            <div class="lfs-part-name">Жесткость подвески (Wheel Rate)</div>
+                            <div class="lfs-part-value">{{ guide.carSettings.rf_wheel_rate }} N/m</div>
+                        </div>
+                        <div class="setup-part">
+                            <div class="lfs-part-name">Жесткость ограничителя (Bumpstop rate)</div>
+                            <div class="lfs-part-value">{{ guide.carSettings.rf_bumpstop_rate }} N</div>
+                        </div>
+                        <div class="setup-part">
+                            <div class="lfs-part-name">Диапазон ограничителей (Bumpstop range)</div>
+                            <div class="lfs-part-value">{{ guide.carSettings.rf_bumpstop_range }}</div>
+                        </div>
                     </div>
                 </div>
-                <div class="right-rear-settings">
-                    <h4>Задняя правая шина</h4>
-                    <div class="setup-part">
-                        <div class="rrs-part-name">Pressure (Давление)</div>
-                        <div class="rrs-part-value">{{guide.carSettings.rr_psi}} psi</div>
+                <div class="rear-suspension-settings">
+                    <div class="left-rear-settings">
+                        <h4>Задняя левая подвеска (Left Rear)</h4>
+                        <div class="setup-part">
+                            <div class="lfs-part-name">Жесткость подвески (Wheel Rate)</div>
+                            <div class="lfs-part-value">{{ guide.carSettings.lr_wheel_rate }} N/m</div>
+                        </div>
+                        <div class="setup-part">
+                            <div class="lfs-part-name">Жесткость ограничителя (Bumpstop rate)</div>
+                            <div class="lfs-part-value">{{ guide.carSettings.lr_bumpstop_rate }} N</div>
+                        </div>
+                        <div class="setup-part">
+                            <div class="lfs-part-name">Диапазон ограничителей (Bumpstop range)</div>
+                            <div class="lfs-part-value">{{ guide.carSettings.lr_bumpstop_range }}</div>
+                        </div>
                     </div>
-                    <div class="setup-part">
-                        <div class="rrs-part-name">Toe (Схождение)</div>
-                        <div class="rrs-part-value">{{guide.carSettings.rr_toe}}°</div>
+                    <div class="right-rear-settings">
+                        <h4>Задняя правая подвеска (Right Rear)</h4>
+                        <div class="setup-part">
+                            <div class="lfs-part-name">Жесткость подвески (Wheel Rate)</div>
+                            <div class="lfs-part-value">{{ guide.carSettings.rr_wheel_rate }} N/m</div>
+                        </div>
+                        <div class="setup-part">
+                            <div class="lfs-part-name">Жесткость ограничителя (Bumpstop rate)</div>
+                            <div class="lfs-part-value">{{ guide.carSettings.rr_bumpstop_rate }} N</div>
+                        </div>
+                        <div class="setup-part">
+                            <div class="lfs-part-name">Диапазон ограничителей (Bumpstop range)</div>
+                            <div class="lfs-part-value">{{ guide.carSettings.rr_bumpstop_range }}</div>
+                        </div>
                     </div>
-                    <div class="setup-part">
-                        <div class="rrs-part-name">Camber (Развал)</div>
-                        <div class="rrs-part-value">{{guide.carSettings.rr_camber}}°</div>
+                </div>
+            </div>
+            <div class="rear-mechanical-grip" style="width: 830px;">
+                <h4 class="setup-title">Механическое сцепление (Mechanical grip). Зад</h4>
+                <div class="setup-part">
+                    <div class="mgrip-part-name">Задний стабилизатор поперечной устойчивости (Anti-Roll Bar)</div>
+                    <div class="mgrip-part-value">{{guide.carSettings.r_antiroll_bar}}</div>
+                </div>
+                <div class="setup-part">
+                    <div class="mgrip-part-name">Преднатяг дифференциала (Preload Differential)</div>
+                    <div class="mgrip-part-value">{{guide.carSettings.preload_diff}}%</div>
+                </div>
+            </div>
+            <div class="dumpers">
+                <div class="front-dumpers-settings">
+                    <div class="left-front-dumper">
+                        <h4>Передний левый амортизатор</h4>
+                        <div class="setup-part">
+                            <div class="dump-set-name">Ход сжатия (Bump)</div>
+                            <div class="dump-set-value">{{ guide.carSettings.lf_bump }}</div>
+                        </div>
+                        <div class="setup-part">
+                            <div class="dump-set-name">Ход быстрого сжатия (Fast Bump)</div>
+                            <div class="dump-set-value">{{ guide.carSettings.lf_fast_bump }}</div>
+                        </div>
+                        <div class="setup-part">
+                            <div class="dump-set-name">Разжатие (Rebound)</div>
+                            <div class="dump-set-value">{{ guide.carSettings.lf_rebound }}</div>
+                        </div>
+                        <div class="setup-part">
+                            <div class="dump-set-name">Ход быстрого разжатия (Fast Rebound)</div>
+                            <div class="dump-set-value">{{ guide.carSettings.lf_fast_reb }}</div>
+                        </div>
                     </div>
+                    <div class="right-front-dumper">
+                        <h4>Передний правый амортизатор</h4>
+                        <div class="setup-part">
+                            <div class="dump-set-name">Ход сжатия (Bump)</div>
+                            <div class="dump-set-value">{{ guide.carSettings.rf_bump }}</div>
+                        </div>
+                        <div class="setup-part">
+                            <div class="dump-set-name">Ход быстрого сжатия (Fast Bump)</div>
+                            <div class="dump-set-value">{{ guide.carSettings.rf_fast_bump }}</div>
+                        </div>
+                        <div class="setup-part">
+                            <div class="dump-set-name">Разжатие (Rebound)</div>
+                            <div class="dump-set-value">{{ guide.carSettings.rf_rebound }}</div>
+                        </div>
+                        <div class="setup-part">
+                            <div class="dump-set-name">Ход быстрого разжатия (Fast Rebound)</div>
+                            <div class="dump-set-value">{{ guide.carSettings.rf_fast_reb }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rear-dumpers-settings">
+                    <div class="left-rear-dumper">
+                        <h4>Задний левый амортизатор</h4>
+                        <div class="setup-part">
+                            <div class="dump-set-name">Ход сжатия (Bump)</div>
+                            <div class="dump-set-value">{{ guide.carSettings.lr_bump }}</div>
+                        </div>
+                        <div class="setup-part">
+                            <div class="dump-set-name">Ход быстрого сжатия (Fast Bump)</div>
+                            <div class="dump-set-value">{{ guide.carSettings.lr_fast_bump }}</div>
+                        </div>
+                        <div class="setup-part">
+                            <div class="dump-set-name">Разжатие (Rebound)</div>
+                            <div class="dump-set-value">{{ guide.carSettings.lr_rebound }}</div>
+                        </div>
+                        <div class="setup-part">
+                            <div class="dump-set-name">Ход быстрого разжатия (Fast Rebound)</div>
+                            <div class="dump-set-value">{{ guide.carSettings.lr_fast_reb }}</div>
+                        </div>
+                    </div>
+                    <div class="right-rear-dumper">
+                        <h4>Задний правый амортизатор</h4>
+                        <div class="setup-part">
+                            <div class="dump-set-name">Ход сжатия (Bump)</div>
+                            <div class="dump-set-value">{{ guide.carSettings.rr_bump }}</div>
+                        </div>
+                        <div class="setup-part">
+                            <div class="dump-set-name">Ход быстрого сжатия (Fast Bump)</div>
+                            <div class="dump-set-value">{{ guide.carSettings.rr_fast_bump }}</div>
+                        </div>
+                        <div class="setup-part">
+                            <div class="dump-set-name">Разжатие (Rebound)</div>
+                            <div class="dump-set-value">{{ guide.carSettings.rr_rebound }}</div>
+                        </div>
+                        <div class="setup-part">
+                            <div class="dump-set-name">Ход быстрого разжатия (Fast Rebound)</div>
+                            <div class="dump-set-value">{{ guide.carSettings.rr_fast_reb }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="front-aerodynamics" style="width: 830px;">
+                <h4>Аэродинамика (Аerodynamics). Перед</h4>
+                <div class="setup-part">
+                    <div class="aero-set-name">Высота подвески (Ride Height)</div>
+                    <div class="aero-set-value"> {{ guide.carSettings.f_ride_height }}</div>
+                </div>
+                <div class="setup-part">
+                    <div class="aero-set-name">Сплиттер (Splitter)</div>
+                    <div class="aero-set-value"> {{ guide.carSettings.splitter }}</div>
+                </div>
+                <div class="setup-part">
+                    <div class="aero-set-name">Воздухозаборники тормозов (Brake Ducts)</div>
+                    <div class="aero-set-value"> {{ guide.carSettings.f_brake_ducts }}</div>
+                </div>
+            </div>
+            <div class="rear-aerodynamics" style="width: 830px;">
+                <h4>Аэродинамика (Аerodynamics). Зад</h4>
+                <div class="setup-part">
+                    <div class="aero-set-name">Высота подвески (Ride Height)</div>
+                    <div class="aero-set-value"> {{ guide.carSettings.r_ride_height }}</div>
+                </div>
+                <div class="setup-part">
+                    <div class="aero-set-name">Антикрыло</div>
+                    <div class="aero-set-value"> {{ guide.carSettings.r_wing }}</div>
+                </div>
+                <div class="setup-part">
+                    <div class="aero-set-name">Воздухозаборники тормозов (Brake Ducts)</div>
+                    <div class="aero-set-value"> {{ guide.carSettings.r_brake_ducts }}</div>
                 </div>
             </div>
         </div>
-        <div class="electronics" style="width: 830px;">
-            <h4 class="setup-title">Электроника</h4>
-            <div class="setup-part">
-                <div class="electronic-part-name">TC</div>
-                <div class="electromic-value">{{guide.carSettings.TC}}</div>
-            </div>
-            <div class="setup-part">
-                <div class="electronic-part-name">ABS</div>
-                <div class="electromic-value">{{guide.carSettings.ABS}}</div>
-            </div>
-            <div class="setup-part">
-                <div class="electronic-part-name">ECUMap</div>
-                <div class="electromic-value">{{guide.carSettings.ECUMap}}</div>
-            </div>
-            <div class="setup-part">
-                <div class="electronic-part-name">Telemetry laps</div>
-                <div class="electromic-value">{{guide.carSettings.telemetry_laps}}</div>
-            </div>
-            <div class="setup-part">
-                <div class="electronic-part-name">TC2</div>
-                <div class="electromic-value">{{guide.carSettings.TC2}}</div>
-            </div>
+        <div class="other-guides" style="color: #fff;">
+            <h3>Другие гайды для {{ guide.carName.name }}</h3>
+            {% for other_guide in related_guides %}
+            <a href="{% url 'guide' other_guide.id %}" class="other-guide-url">{{other_guide.trackName.name}}</a>
+            {% endfor %}
         </div>
-        <div class="front-mechanical-grip" style="width: 830px;">
-            <h4 class="setup-title">Механическое сцепление (Mechanical grip). Перед</h4>
-            <div class="setup-part">
-                <div class="mgrip-part-name">Передний стабилизатор поперечной устойчивости (Anti-Roll Bar)</div>
-                <div class="mgrip-part-value">{{guide.carSettings.f_antiroll_bar}}</div>
-            </div>
-            <div class="setup-part">
-                <div class="mgrip-part-name">Усилие тормозов (brake Power)</div>
-                <div class="mgrip-part-value">{{guide.carSettings.brake_power}}%</div>
-            </div>
-            <div class="setup-part">
-                <div class="mgrip-part-name">Распределените тормозного усилия (brake bias)</div>
-                <div class="mgrip-part-value">{{guide.carSettings.brake_bias}}%</div>
-            </div>
-            <div class="setup-part">
-                <div class="mgrip-part-name">Коэффициент рулевого управления (steer ratio)</div>
-                <div class="mgrip-part-value">{{guide.carSettings.steer_ratio}}%</div>
-            </div>
-        </div>
-        <div class="suspensions">
-            <div class="front-suspension-settings">
-                <div class="left-front-settings">
-                    <h4>Передняя левая подвеска (Left Front)</h4>
-                    <div class="setup-part">
-                        <div class="lfs-part-name">Жесткость подвески (Wheel Rate)</div>
-                        <div class="lfs-part-value">{{ guide.carSettings.lf_wheel_rate }} N/m</div>
-                    </div>
-                    <div class="setup-part">
-                        <div class="lfs-part-name">Жесткость ограничителя (Bumpstop rate)</div>
-                        <div class="lfs-part-value">{{ guide.carSettings.lf_bumpstop_rate }} N</div>
-                    </div>
-                    <div class="setup-part">
-                        <div class="lfs-part-name">Диапазон ограничителей (Bumpstop range)</div>
-                        <div class="lfs-part-value">{{ guide.carSettings.lf_bumpstop_range }}</div>
-                    </div>
-                </div>
-                <div class="right-front-settings">
-                    <h4>Передняя правая подвеска (Right Front)</h4>
-                    <div class="setup-part">
-                        <div class="lfs-part-name">Жесткость подвески (Wheel Rate)</div>
-                        <div class="lfs-part-value">{{ guide.carSettings.rf_wheel_rate }} N/m</div>
-                    </div>
-                    <div class="setup-part">
-                        <div class="lfs-part-name">Жесткость ограничителя (Bumpstop rate)</div>
-                        <div class="lfs-part-value">{{ guide.carSettings.rf_bumpstop_rate }} N</div>
-                    </div>
-                    <div class="setup-part">
-                        <div class="lfs-part-name">Диапазон ограничителей (Bumpstop range)</div>
-                        <div class="lfs-part-value">{{ guide.carSettings.rf_bumpstop_range }}</div>
-                    </div>
-                </div>
-            </div>
-            <div class="rear-suspension-settings">
-                <div class="left-rear-settings">
-                    <h4>Задняя левая подвеска (Left Rear)</h4>
-                    <div class="setup-part">
-                        <div class="lfs-part-name">Жесткость подвески (Wheel Rate)</div>
-                        <div class="lfs-part-value">{{ guide.carSettings.lr_wheel_rate }} N/m</div>
-                    </div>
-                    <div class="setup-part">
-                        <div class="lfs-part-name">Жесткость ограничителя (Bumpstop rate)</div>
-                        <div class="lfs-part-value">{{ guide.carSettings.lr_bumpstop_rate }} N</div>
-                    </div>
-                    <div class="setup-part">
-                        <div class="lfs-part-name">Диапазон ограничителей (Bumpstop range)</div>
-                        <div class="lfs-part-value">{{ guide.carSettings.lr_bumpstop_range }}</div>
-                    </div>
-                </div>
-                <div class="right-rear-settings">
-                    <h4>Передняя правая подвеска (Right Rear)</h4>
-                    <div class="setup-part">
-                        <div class="lfs-part-name">Жесткость подвески (Wheel Rate)</div>
-                        <div class="lfs-part-value">{{ guide.carSettings.rr_wheel_rate }} N/m</div>
-                    </div>
-                    <div class="setup-part">
-                        <div class="lfs-part-name">Жесткость ограничителя (Bumpstop rate)</div>
-                        <div class="lfs-part-value">{{ guide.carSettings.rr_bumpstop_rate }} N</div>
-                    </div>
-                    <div class="setup-part">
-                        <div class="lfs-part-name">Диапазон ограничителей (Bumpstop range)</div>
-                        <div class="lfs-part-value">{{ guide.carSettings.rr_bumpstop_range }}</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="rear-mechanical-grip" style="width: 830px;">
-            <h4 class="setup-title">Механическое сцепление (Mechanical grip). Зад</h4>
-            <div class="setup-part">
-                <div class="mgrip-part-name">Передний стабилизатор поперечной устойчивости (Anti-Roll Bar)</div>
-                <div class="mgrip-part-value">{{guide.carSettings.r_antiroll_bar}}</div>
-            </div>
-            <div class="setup-part">
-                <div class="mgrip-part-name">Преднатяг дифференциала (Preload Differential)</div>
-                <div class="mgrip-part-value">{{guide.carSettings.preload_diff}}%</div>
-            </div>
-        </div>
-        <div class="dumpers">
-            <div class="front-dumpers-settings">
-                <div class="left-front-dumper">
-                    <h4>Передний левый амортизатор</h4>
-                    <div class="setup-part">
-                        <div class="dump-set-name">Ход сжатия (Bump)</div>
-                        <div class="dump-set-value">{{ guide.carSettings.lf_bump }}</div>
-                    </div>
-                    <div class="setup-part">
-                        <div class="dump-set-name">Ход быстрого сжатия (Fast Bump)</div>
-                        <div class="dump-set-value">{{ guide.carSettings.lf_fast_bump }}</div>
-                    </div>
-                    <div class="setup-part">
-                        <div class="dump-set-name">Разжатие (Rebound)</div>
-                        <div class="dump-set-value">{{ guide.carSettings.lf_rebound }}</div>
-                    </div>
-                    <div class="setup-part">
-                        <div class="dump-set-name">Ход быстрого разжатия (Fast Rebound)</div>
-                        <div class="dump-set-value">{{ guide.carSettings.lf_fast_reb }}</div>
-                    </div>
-                </div>
-                <div class="right-front-dumper">
-                    <h4>Передний правый амортизатор</h4>
-                    <div class="setup-part">
-                        <div class="dump-set-name">Ход сжатия (Bump)</div>
-                        <div class="dump-set-value">{{ guide.carSettings.rf_bump }}</div>
-                    </div>
-                    <div class="setup-part">
-                        <div class="dump-set-name">Ход быстрого сжатия (Fast Bump)</div>
-                        <div class="dump-set-value">{{ guide.carSettings.rf_fast_bump }}</div>
-                    </div>
-                    <div class="setup-part">
-                        <div class="dump-set-name">Разжатие (Rebound)</div>
-                        <div class="dump-set-value">{{ guide.carSettings.rf_rebound }}</div>
-                    </div>
-                    <div class="setup-part">
-                        <div class="dump-set-name">Ход быстрого разжатия (Fast Rebound)</div>
-                        <div class="dump-set-value">{{ guide.carSettings.rf_fast_reb }}</div>
-                    </div>
-                </div>
-            </div>
-            <div class="rear-dumpers-settings">
-                <div class="left-rear-dumper">
-                    <h4>Задний левый амортизатор</h4>
-                    <div class="setup-part">
-                        <div class="dump-set-name">Ход сжатия (Bump)</div>
-                        <div class="dump-set-value">{{ guide.carSettings.lr_bump }}</div>
-                    </div>
-                    <div class="setup-part">
-                        <div class="dump-set-name">Ход быстрого сжатия (Fast Bump)</div>
-                        <div class="dump-set-value">{{ guide.carSettings.lr_fast_bump }}</div>
-                    </div>
-                    <div class="setup-part">
-                        <div class="dump-set-name">Разжатие (Rebound)</div>
-                        <div class="dump-set-value">{{ guide.carSettings.lr_rebound }}</div>
-                    </div>
-                    <div class="setup-part">
-                        <div class="dump-set-name">Ход быстрого разжатия (Fast Rebound)</div>
-                        <div class="dump-set-value">{{ guide.carSettings.lr_fast_reb }}</div>
-                    </div>
-                </div>
-                <div class="right-rear-dumper">
-                    <h4>Задний правый амортизатор</h4>
-                    <div class="setup-part">
-                        <div class="dump-set-name">Ход сжатия (Bump)</div>
-                        <div class="dump-set-value">{{ guide.carSettings.rr_bump }}</div>
-                    </div>
-                    <div class="setup-part">
-                        <div class="dump-set-name">Ход быстрого сжатия (Fast Bump)</div>
-                        <div class="dump-set-value">{{ guide.carSettings.rr_fast_bump }}</div>
-                    </div>
-                    <div class="setup-part">
-                        <div class="dump-set-name">Разжатие (Rebound)</div>
-                        <div class="dump-set-value">{{ guide.carSettings.rr_rebound }}</div>
-                    </div>
-                    <div class="setup-part">
-                        <div class="dump-set-name">Ход быстрого разжатия (Fast Rebound)</div>
-                        <div class="dump-set-value">{{ guide.carSettings.rr_fast_reb }}</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="front-aerodynamics" style="width: 830px;">
-            <h4>Аэродинамика (Аerodynamics). Перед</h4>
-            <div class="setup-part">
-                <div class="aero-set-name">Высота подвески (Ride Height)</div>
-                <div class="aero-set-value"> {{ guide.carSettings.f_ride_height }}</div>
-            </div>
-            <div class="setup-part">
-                <div class="aero-set-name">Сплиттер (Splitter)</div>
-                <div class="aero-set-value"> {{ guide.carSettings.splitter }}</div>
-            </div>
-            <div class="setup-part">
-                <div class="aero-set-name">Воздухозаборники тормозов (Brake Ducts)</div>
-                <div class="aero-set-value"> {{ guide.carSettings.f_brake_ducts }}</div>
-            </div>
-        </div>
-        <div class="rear-aerodynamics" style="width: 830px;">
-            <h4>Аэродинамика (Аerodynamics). Зад</h4>
-            <div class="setup-part">
-                <div class="aero-set-name">Высота подвески (Ride Height)</div>
-                <div class="aero-set-value"> {{ guide.carSettings.r_ride_height }}</div>
-            </div>
-            <div class="setup-part">
-                <div class="aero-set-name">Сплиттер (Splitter)</div>
-                <div class="aero-set-value"> {{ guide.carSettings.r_wing }}</div>
-            </div>
-            <div class="setup-part">
-                <div class="aero-set-name">Воздухозаборники тормозов (Brake Ducts)</div>
-                <div class="aero-set-value"> {{ guide.carSettings.r_brake_ducts }}</div>
-            </div>
-        </div>
-    </div>
-    <div class="other-guides" style="color: #fff;">
-        <h3>Другие гайды для {{ guide.carName.name }}</h3>
-        {% for other_guide in related_guides %}
-        <a href="{% url 'guide' other_guide.id %}" class="other-guide-url">{{other_guide.trackName.name}}</a>
-        {% endfor %}
-    </div>
-</main>
+    </main>
 
 
 {% endblock %}
 
-{"lf_psi": "25,6", "lf_toe": "-0,12", "lf_camber": "-4,0", "lf_caster": "15,2", "rf_psi": "26,4", "rf_toe": "-0,12", "rf_camber": "-4,0", "rf_caster": "15,2", "lr_psi": "25,6", "lr_toe": "0,01", "lr_camber": "-3,5", "rr_psi": "26,1", "rr_toe": "0,01", "rr_camber": "-3,5", "TC": "1", "ABS": "3", "ECUMap": "1", "telemetry_laps": "0", "TC2": "8", "f_antiroll_bar": "5", "r_antiroll_bar": "6", "brake_power": "100", "brake_bias": "60,2", "steer_ratio": "14", "lf_wheel_rate": "135000", "lf_bumpstop_rate": "500", "lf_bunpstop_range": "12", "rf_wheel_rate": "135000", "rf_bumpstop_rate": "500", "rf_bunpstop_range": "12", "lr_wheel_rate": "145000", "lr_bumpstop_rate": "300", "lr_bunpstop_range": "26", "rr_wheel_rate": "145000", "rr_bumpstop_rate": "300", "rr_bumpstop_range": "26", "preload_diff": "20", "lf_bump": "15", "lf_fast_bump": "12", "lf_rebound": "12", "lf_fast_reb": "22", "rf_bump": "15", "rf_fast_bump": "12", "rf_rebound": "12", "rf_fast_reb": "22", "lr_bump": "12", "lr_fast_bump": "13", "lr_rebound": "15", "lr_fast_reb": "21", "rr_bump": "12", "rr_fast_bump": "13", "rr_rebound": "15", "rr_fast_reb": "21", "r_ride_height": "56", "r_wing": "0", "r_brake_ducts": "2", "f_ride_height": "53", "splitter": "0", "f_brake_ducts": "3"}

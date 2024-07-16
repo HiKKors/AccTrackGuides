@@ -96,3 +96,13 @@ main {
 .other-guide-url:visited {
     color: #6c6c6c;
 }
+
+.setup-info {
+    margin-top: 15px;
+    width: 809px;
+    background-color: rgb(38, 38, 38);
+    padding: 10px;
+    border: 3px;
+    border-radius: 5px;
+    margin-left: 5%;
+}

@@ -2,13 +2,20 @@
 
 {% load static %}
 
+{% block guide-info %}
+<div class="guide-info">
+
+</div>
+{% endblock %}
 
 {% block content %}
 <main>
     <div class="user-setups">
         <h2>Мои сетапы</h2>
         <div class="container">
-            <p>{{user_setups}}</p>
+            {% for guide in user_setups %}
+                <a href="{% url 'user:userSetupInfo' guide.id  %}">{{guide}}</a>
+            {% endfor %}
         </div>
     </div>
     <div class="add_setup">

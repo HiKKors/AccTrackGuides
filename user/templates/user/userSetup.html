@@ -1,0 +1,21 @@
+{% extends 'guides/guide.html' %}
+
+{% block guide-info %}
+        <div class="setup-info">
+            <div class="main-title">
+                <h2>{{guide.trackName}} {{guide.carName}} Настройка</h2>
+            </div>
+            <div class="car-track">
+                <div class="car-title">
+                    <h4>{{guide.carName}}</h4>
+                </div>
+                <div class="track-title">
+                    <h4>{{guide.trackName}}</h4>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+
+{% block video %}
+<p></p>
+{% endblock %}

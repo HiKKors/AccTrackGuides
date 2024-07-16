@@ -69,3 +69,8 @@
     display: flex;
     flex-direction: row;
 }
+
+.filter-menu, .container {
+    display: flex;
+    flex-direction: row;
+}

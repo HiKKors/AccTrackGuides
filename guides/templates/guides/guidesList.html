@@ -7,26 +7,23 @@
 
 {% block content %}
 <main>
-    <div class="search-and-filter">
-        
-    </div>
     <div class="guides-serching">
         <h1 style="color: white; font-size: 24px">ТРЕК ГАЙДЫ</h1>
-
-        <div class="search-guides">
-            <input class="search-string" type="text">
-        </div>
-        <div class="search-button">
-            <input type="button" value="Найти">
-        </div>
     </div>
 
     <div class="filter-menu">
         <menu class="filter">
             <form action="{% url 'guides-list' %}" method="get">
                 {% csrf_token %}
-                {{form.as_p}}
-                <input type="submit" value="Применить">
+                <form action="/guides/">
+                    <label for="trackName__name__icontains">Трэк</label>
+                    {{form.trackName__name__icontains}}
+
+                    <label for="carName__name__icontains">Машина</label>
+                    {{form.carName__name__icontains}}
+                    <input type="submit" value="Применить">
+                </form>
+                
             </form>
         </menu>
     </div>

@@ -8,10 +8,323 @@
     <form action="" method="POST">
         {%csrf_token%}
         {{form.as_p}}
-        
-
+        <div class="tyres">
+            <div class="front-tyres-settings">
+                <div class="left-front-settings">
+                    <h4>Передняя левая шина</h4>
+                    <div class="setup-part">
+                        <div class="lfs-part-name">Pressure (Давление)</div>
+                        <input type="number" name="lf_psi" step="0.01">
+                    </div>
+                    <div class="setup-part">
+                        <div class="lfs-part-name">Toe (Схождение)</div>
+                        <input type="number" name="lf_toe" step="0.01">
+                    </div>
+                    <div class="setup-part"></div>
+                        <div class="lfs-part-name">Camber (Развал)</div>
+                        <input type="number" name="lf_camber" step="0.01">
+                    </div>
+                    <div class="setup-part"></div> 
+                        <div class="lfs-part-name">Caster (Кастор)</div>   
+                        <input type="number" name="lf_caster" step="0.01">                
+                    </div>
+                </div>
+                <div class="right-front-settings">
+                    <h4>Передняя правая шина</h4>
+                    <div class="setup-part">
+                        <div class="rfs-part-name">Pressure (Давление)</div>
+                        <input type="number" name="rf_psi" step="0.01">
+                    </div>
+                    <div class="setup-part">
+                        <div class="rfs-part-name">Toe (Схождение)</div>
+                        <input type="number" name="rf_toe" step="0.01">
+                    </div>
+                    <div class="setup-part"></div>
+                        <div class="rfs-part-name">Camber (Развал)</div>
+                        <input type="number" name="rf_camber" step="0.01">
+                    </div>
+                    <div class="setup-part"></div>   
+                        <div class="rfs-part-name">Caster (Кастор)</div>
+                        <input type="number" name="rf_caster" step="0.01">                
+                    </div>
+                </div>
+            </div>
+            <div class="rear-tyres-settings">
+                <div class="left-rear-settings">
+                    <h4>Задняя левая шина</h4>
+                    <div class="setup-part">
+                        <div class="lrs-part-name">Pressure (Давление)</div>
+                        <input type="number" name="lr_psi" step="0.01">
+                    </div>
+                    <div class="setup-part">
+                        <div class="lrs-part-name">Toe (Схождение)</div>
+                        <input type="number" name="lr_toe" step="0.01">
+                    </div>
+                    <div class="setup-part"></div>
+                        <div class="lrs-part-name">Camber (Развал)</div>
+                        <input type="number" name="lr_camber" step="0.01">
+                    </div>
+                    <div class="setup-part"></div>
+                        <div class="lrs-part-name">Caster (Кастор)</div>
+                        <input type="number" name="lr_caster" step="0.01">                
+                    </div>
+                </div>
+                <div class="right-rear-settings">
+                    <h4>Задняя правая шина</h4>
+                    <div class="setup-part">
+                        <div class="rrs-part-name">Pressure (Давление)</div>
+                        <input type="number" name="rr_psi" step="0.01">
+                    </div>
+                    <div class="setup-part">
+                        <div class="rrs-part-name">Toe (Схождение)</div>
+                        <input type="number" name="rr_toe" step="0.01">
+                    </div>
+                    <div class="setup-part"></div>
+                        <div class="rrs-part-name">Camber (Развал)</div>
+                        <input type="number" name="rr_camber" step="0.01">
+                    </div>
+                    <div class="setup-part"></div>    
+                        <div class="rrs-part-name">Caster (Кастор)</div>
+                        <input type="number" name="rr_caster" step="0.01">                
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="electronics">
+            <h4>Электроника</h4>
+            <div class="setup-part">
+                <div class="electronic-part-name">TC</div>
+                <input type="number" name="tc">
+            </div>
+            <div class="setup-part">
+                <div class="electronic-part-name">ECUMap</div>
+                <input type="number" name="ecumap">
+            </div>
+            <div class="setup-part">
+                <div class="electronic-part-name">ABS</div>
+                <input type="number" name="abs">
+            </div>
+            <div class="setup-part">
+                <div class="electronic-part-name">Telemetry laps</div>
+                <input type="number" name="tel_laps">
+            </div>
+            <div class="setup-part">
+                <div class="electronic-part-name">TC2</div>
+                <input type="number" name="tc2">
+            </div>
+        </div>
+        <div class="front-mechanical-grip">
+            <h4 class="setup-title">Механическое сцепление (Mechanical grip). Перед</h4>
+            <div class="setup-part">
+                <div class="mgrip-part-name">Передний стабилизатор поперечной устойчивости (Anti-Roll Bar)</div>
+                <input type="number" name="f_anti_roll">
+            </div>
+            <div class="setup-part">
+                <div class="mgrip-part-name">Усилие тормозов (brake Power)</div>
+                <input type="number" name="brake_power">
+            </div>
+            <div class="setup-part">
+                <div class="mgrip-part-name">Распределените тормозного усилия (brake bias)</div>
+                <input type="number" name="brake_bias" step="0.01">
+            </div>
+            <div class="setup-part">
+                <div class="mgrip-part-name">Коэффициент рулевого управления (steer ratio)</div>
+                <input type="number" name="steer_ratio">
+            </div>
+        </div>
+        <div class="suspensions">
+            <div class="front-suspension-settings">
+                <div class="left-front-settings">
+                    <h4>Передняя левая подвеска (Left Front)</h4>
+                    <div class="setup-part">
+                        <div class="lfs-part-name">Жесткость подвески (Wheel Rate)</div>
+                        <input type="number" name="lf_wheel_rate">
+                    </div>
+                    <div class="setup-part">
+                        <div class="lfs-part-name">Жесткость ограничителя (Bumpstop rate)</div>
+                        <input type="number" name="lf_bump_rate">
+                    </div>
+                    <div class="setup-part">
+                        <div class="lfs-part-name">Диапазон ограничителей (Bumpstop range)</div>
+                        <input type="number" name="lf_bump_range">
+                    </div>
+                </div>
+                <div class="right-front-settings">
+                    <h4>Передняя правая подвеска (Right Front)</h4>
+                    <div class="setup-part">
+                        <div class="lfs-part-name">Жесткость подвески (Wheel Rate)</div>
+                        <input type="number" name="rf_wheel_rate">
+                    </div>
+                    <div class="setup-part">
+                        <div class="lfs-part-name">Жесткость ограничителя (Bumpstop rate)</div>
+                        <input type="number" name="rf_bump_rate">
+                    </div>
+                    <div class="setup-part">
+                        <div class="lfs-part-name">Диапазон ограничителей (Bumpstop range)</div>
+                        <input type="number" name="rf_bump_range">
+                    </div>
+                </div>
+            </div>
+            <div class="rear-suspension-settings">
+                <div class="left-rear-settings">
+                    <h4>Задняя левая подвеска (Left Rear)</h4>
+                    <div class="setup-part">
+                        <div class="lfs-part-name">Жесткость подвески (Wheel Rate)</div>
+                        <input type="number" name="lr_wheel_rate">
+                    </div>
+                    <div class="setup-part">
+                        <div class="lfs-part-name">Жесткость ограничителя (Bumpstop rate)</div>
+                        <input type="number" name="lr_bump_rate">
+                    </div>
+                    <div class="setup-part">
+                        <div class="lfs-part-name">Диапазон ограничителей (Bumpstop range)</div>
+                        <input type="number" name="lr_bump_range">
+                    </div>
+                </div>
+                <div class="right-rear-settings">
+                    <h4>ЗАдняя правая подвеска (Right Rear)</h4>
+                    <div class="setup-part">
+                        <div class="lfs-part-name">Жесткость подвески (Wheel Rate)</div>
+                        <input type="number" name="rr_wheel_rate">
+                    </div>
+                    <div class="setup-part">
+                        <div class="lfs-part-name">Жесткость ограничителя (Bumpstop rate)</div>
+                        <input type="number" name="rr_bump_rate">
+                    </div>
+                    <div class="setup-part">
+                        <div class="lfs-part-name">Диапазон ограничителей (Bumpstop range)</div>
+                        <input type="number" name="rr_bump_range">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rear-mechanical-grip">
+            <h4 class="setup-title">Механическое сцепление (Mechanical grip). Зад</h4>
+            <div class="setup-part">
+                <div class="mgrip-part-name">Задний стабилизатор поперечной устойчивости (Anti-Roll Bar)</div>
+                <input type="number" name="r_anti_roll">
+            </div>
+            <div class="setup-part">
+                <div class="mgrip-part-name">Преднатяг дифференциала (Preload Differential)</div>
+                <input type="number" name="preload_diff">
+            </div>
+        </div>
+        <div class="dumpers">
+            <div class="front-dumpers-settings">
+                <div class="left-front-dumper">
+                    <h4>Передний левый амортизатор</h4>
+                    <div class="setup-part">
+                        <div class="dump-set-name">Ход сжатия (Bump)</div>
+                        <input type="number" name="lf_bump">
+                    </div>
+                    <div class="setup-part">
+                        <div class="dump-set-name">Ход быстрого сжатия (Fast Bump)</div>
+                        <input type="number" name="lf_fast_bump">
+                    </div>
+                    <div class="setup-part">
+                        <div class="dump-set-name">Разжатие (Rebound)</div>
+                        <input type="number" name="lf_rebound">
+                    </div>
+                    <div class="setup-part">
+                        <div class="dump-set-name">Ход быстрого разжатия (Fast Rebound)</div>
+                        <input type="number" name="lf_fast_rebound">
+                    </div>
+                </div>
+                <div class="right-front-dumper">
+                    <h4>Передний правый амортизатор</h4>
+                    <div class="setup-part">
+                        <div class="dump-set-name">Ход сжатия (Bump)</div>
+                        <input type="number" name="rf_bump">
+                    </div>
+                    <div class="setup-part">
+                        <div class="dump-set-name">Ход быстрого сжатия (Fast Bump)</div>
+                        <input type="number" name="rf_fast_bump">
+                    </div>
+                    <div class="setup-part">
+                        <div class="dump-set-name">Разжатие (Rebound)</div>
+                        <input type="number" name="rf_rebound">
+                    </div>
+                    <div class="setup-part">
+                        <div class="dump-set-name">Ход быстрого разжатия (Fast Rebound)</div>
+                        <input type="number" name="rf_fast_rebound">
+                    </div>
+                </div>
+            </div>
+            <div class="rear-dumpers-settings">
+                <div class="left-rear-dumper">
+                    <h4>Задний левый амортизатор</h4>
+                    <div class="setup-part">
+                        <div class="dump-set-name">Ход сжатия (Bump)</div>
+                        <input type="number" name="lr_bump">
+                    </div>
+                    <div class="setup-part">
+                        <div class="dump-set-name">Ход быстрого сжатия (Fast Bump)</div>
+                        <input type="number" name="lr_fast_bump">
+                    </div>
+                    <div class="setup-part">
+                        <div class="dump-set-name">Разжатие (Rebound)</div>
+                        <input type="number" name="lr_rebound">
+                    </div>
+                    <div class="setup-part">
+                        <div class="dump-set-name">Ход быстрого разжатия (Fast Rebound)</div>
+                        <input type="number" name="lr_fast_rebound">
+                    </div>
+                </div>
+                <div class="right-rear-dumper">
+                    <h4>Задний правый амортизатор</h4>
+                    <div class="setup-part">
+                        <div class="dump-set-name">Ход сжатия (Bump)</div>
+                        <input type="number" name="rr_bump">
+                    </div>
+                    <div class="setup-part">
+                        <div class="dump-set-name">Ход быстрого сжатия (Fast Bump)</div>
+                        <input type="number" name="rr_fast_bump">
+                    </div>
+                    <div class="setup-part">
+                        <div class="dump-set-name">Разжатие (Rebound)</div>
+                        <input type="number" name="rr_rebound">
+                    </div>
+                    <div class="setup-part">
+                        <div class="dump-set-name">Ход быстрого разжатия (Fast Rebound)</div>
+                        <input type="number" name="rr_fast_rebound">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="front-aerodynamics">
+            <h4>Аэродинамика (Аerodynamics). Перед</h4>
+            <div class="setup-part">
+                <div class="aero-set-name">Высота подвески (Ride Height)</div>
+                <input type="number" name="f_ride_height">
+            </div>
+            <div class="setup-part">
+                <div class="aero-set-name">Сплиттер (Splitter)</div>
+                <input type="number" name="splitter">
+            </div>
+            <div class="setup-part">
+                <div class="aero-set-name">Воздухозаборники тормозов (Brake Ducts)</div>
+                <input type="number" name="f_brake_ducts">
+            </div>
+        </div>
+        <div class="rear-aerodynamics">
+            <h4>Аэродинамика (Аerodynamics). Зад</h4>
+            <div class="setup-part">
+                <div class="aero-set-name">Высота подвески (Ride Height)</div>
+                <input type="number" name="r_ride_height">
+            </div>
+            <div class="setup-part">
+                <div class="aero-set-name">Антикрыло</div>
+                <input type="number" name="r_wing">
+            </div>
+            <div class="setup-part">
+                <div class="aero-set-name">Воздухозаборники тормозов (Brake Ducts)</div>
+                <input type="number" name="r_brake_ducts">
+            </div>
+        </div>
         <input type="submit" value="создать">
     </form>
 </main>
 
 {% endblock %}
+
+{"TC": "1", "ABS": "3", "ECUMap": "1", "telemetry_laps": "0", "TC2": "8", "f_antiroll_bar": "5", "r_antiroll_bar": "6", "brake_power": "100", "brake_bias": "60,2", "steer_ratio": "14", "lf_wheel_rate": "135000", "lf_bumpstop_rate": "500", "lf_bunpstop_range": "12", "rf_wheel_rate": "135000", "rf_bumpstop_rate": "500", "rf_bunpstop_range": "12", "lr_wheel_rate": "145000", "lr_bumpstop_rate": "300", "lr_bunpstop_range": "26", "rr_wheel_rate": "145000", "rr_bumpstop_rate": "300", "rr_bumpstop_range": "26", "preload_diff": "20", "lf_bump": "15", "lf_fast_bump": "12", "lf_rebound": "12", "lf_fast_reb": "22", "rf_bump": "15", "rf_fast_bump": "12", "rf_rebound": "12", "rf_fast_reb": "22", "lr_bump": "12", "lr_fast_bump": "13", "lr_rebound": "15", "lr_fast_reb": "21", "rr_bump": "12", "rr_fast_bump": "13", "rr_rebound": "15", "rr_fast_reb": "21", "r_ride_height": "56", "r_wing": "0", "r_brake_ducts": "2", "f_ride_height": "53", "splitter": "0", "f_brake_ducts": "3"}

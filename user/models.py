@@ -14,5 +14,8 @@ class UserGuide(models.Model):
     
     carSettings = models.JSONField()
     
+    def __str__(self):
+        return f'{self.trackName} {self.carName} за {self.pass_time}'
+    
 class User(AbstractUser):
     username = models.CharField(max_length=128, unique=True)
