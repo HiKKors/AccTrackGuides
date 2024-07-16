@@ -18,7 +18,6 @@ class Guides(ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         self.filterset = GuideFilter(self.request.GET, queryset=queryset)
-        print(self.filterset.get_filters())
         return self.filterset.qs
     
     # контекстные данные 
