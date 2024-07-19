@@ -23,6 +23,8 @@ from django.views.generic.edit import CreateView
 
 from django.views.generic.detail import DetailView
 
+from .mixins import ViewCountMixin
+
 # Create your views here.
 def login(request):
     if request.method == 'POST':
@@ -244,7 +246,7 @@ def addUserSetup(request):
     }
     return render(request, 'user/addUserSetup.html', context=context)
 
-class UserSetupReview(DetailView):
+class UserSetupReview(ViewCountMixin, DetailView):
     model = UserGuide
     context_object_name = 'guide'
     template_name = 'user/userSetup.html'

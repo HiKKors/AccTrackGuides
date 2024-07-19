@@ -1,0 +1,54 @@
+.setup-parts {
+    display: flex;
+    flex-direction: row;
+}
+
+.setup-part-title {
+    display: flex;
+    flex-direction: row;
+}
+
+.img {
+    width: 25px;
+    height: 25px;
+    filter: invert(1);
+    margin-top: 17px;
+}
+
+.user-setup-preview {
+    background-color: rgb(49, 49, 47);
+    border-radius: 10px;
+    width: 30%;
+    padding: 7px;
+    margin-bottom: 10px;
+}
+
+.preview-title a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.preview-title a:hover {
+    color: #b24949;
+}
+
+.preview-title a:visited {
+    color: #fff;
+}
+
+.view_count {
+    display: flex;
+    flex-direction: row;
+}
+
+.img-view {
+    width: 25px;
+    height: 25px;
+    filter: invert(1);
+    margin-bottom: 10px;
+}
+
+.view-value {
+    margin-top: 3px;
+    margin-left: 10px;
+}

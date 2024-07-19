@@ -2,21 +2,54 @@
 
 {% load static %}
 
-{% block guide-info %}
-<div class="guide-info">
-
-</div>
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/userSetups.css' %}">
 {% endblock %}
 
 {% block content %}
 <main>
     <div class="user-setups">
         <h2>Мои сетапы</h2>
-        <div class="container">
-            {% for guide in user_setups %}
-                <a href="{% url 'user:userSetupInfo' guide.id  %}">{{guide}}</a>
-            {% endfor %}
-        </div>
+        {% for guide in user_setups %}
+            <div class="user-setup-preview">
+                <div class="preview-title">
+                    <a href="{% url 'user:userSetupInfo' guide.id  %}">{{guide}}</a>
+                </div>
+                <div class="setup-parts">
+                    <div class="setup-part-title">
+                        <div class="img">
+                            <img width="25" height="25" src="https://img.icons8.com/ios/50/car--v1.png" alt="car--v1"/>
+                        </div>
+                        <div class="car" style="margin-left: 10px">
+                            <h4>{{guide.carName}}</h4>
+                        </div>
+                    </div>
+                    <div class="setup-part-title" style="margin-left: 75px;">
+                        <div class="img">
+                            <img width="25" height="25" src="https://img.icons8.com/ios/50/stopwatch.png" alt="stopwatch"/>
+                        </div>
+                        <div class="pass-time" style="margin-left: 10px">
+                            <h4>{{guide.pass_time}}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="setup-part-title">
+                    <div class="img">
+                        <img width="25" height="25" src="https://img.icons8.com/external-kmg-design-detailed-outline-kmg-design/64/external-running-track-running-kmg-design-detailed-outline-kmg-design.png" alt="external-running-track-running-kmg-design-detailed-outline-kmg-design"/>
+                    </div>
+                    <div class="track" style="margin-left: 10px">
+                        <h4>{{guide.trackName}}</h4>
+                    </div>
+                </div>
+
+                <div class="view_count">
+                    <div class="img-view">
+                        <img width="25" height="25" src="https://img.icons8.com/sf-regular-filled/48/visible.png" alt="visible"/>
+                    </div>
+                    <div class="view-value">{{guide.get_view_count}}</div>
+                </div>
+            </div>
+        {% endfor %}
     </div>
     <div class="add_setup">
         <a href="{% url 'user:userSetup' %}">Добавить</a>

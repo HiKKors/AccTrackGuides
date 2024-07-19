@@ -106,3 +106,32 @@ main {
     border-radius: 5px;
     margin-left: 5%;
 }
+
+.car-track-time {
+    display: flex;
+    flex-direction: row;
+}
+
+.track-title {
+    margin-left: 150px;
+}
+
+.setup-author {
+    display: flex;
+    flex-direction: row;
+}
+
+.img {
+    margin-top: 19px;
+}
+
+.img img {
+    width: 25px;
+    height: 25px;
+    filter: invert(1);
+}
+
+.setup-part-title {
+    display: flex;
+    flex-direction: row;
+}

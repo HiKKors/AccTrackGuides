@@ -17,5 +17,18 @@ class UserGuide(models.Model):
     def __str__(self):
         return f'{self.trackName} {self.carName} за {self.pass_time}'
     
+    def get_view_count(self):
+        return self.views.count()
+    
 class User(AbstractUser):
     username = models.CharField(max_length=128, unique=True)
+    
+    
+class ViewCount(models.Model):
+    setup = models.ForeignKey(to='UserGuide', on_delete=models.CASCADE, related_name='views')
+    ip_adress = models.GenericIPAddressField(verbose_name='IP адрес')
+    
+    class Meta:
+        verbose_name = 'Просмотр'
+        verbose_name_plural = 'Просмотры'
+        
