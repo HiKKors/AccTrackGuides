@@ -30,3 +30,10 @@ class Track(models.Model):
     
     def __str__(self):
         return self.name
+    
+class CarFrontLook(models.Model):
+    carId = models.ForeignKey(to='Car', on_delete=models.DO_NOTHING)
+    image = models.ImageField(upload_to='car_front_looks', blank=True)
+    
+    def __str__(self):
+        return f'{self.carId}'
