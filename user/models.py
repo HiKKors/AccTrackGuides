@@ -11,6 +11,7 @@ class UserGuide(models.Model):
     trackName = models.ForeignKey(to='guides.Track', on_delete=models.DO_NOTHING, related_name='guide_tracks')
     carName = models.ForeignKey(to='guides.Car', on_delete=models.DO_NOTHING, related_name='guide_cars')
     pass_time = models.CharField(max_length=64, blank=False, null=False, default='0')
+    rating = models.PositiveSmallIntegerField(default=0)
     
     carSettings = models.JSONField()
     

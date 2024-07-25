@@ -135,3 +135,16 @@ main {
     display: flex;
     flex-direction: row;
 }
+
+.img-view {
+    width: 25px;
+    height: 25px;
+    filter: invert(1);
+    margin-top: 19px;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

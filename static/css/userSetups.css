@@ -52,3 +52,50 @@
     margin-top: 3px;
     margin-left: 10px;
 }
+
+.user-setup-preview-com {
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(49, 49, 47);
+    border-radius: 10px;
+    width: 34%;
+    padding: 7px;
+    margin-bottom: 10px;
+}
+
+.car-preview {
+    margin-top: 7%;
+    margin-right: 5px;
+}
+
+.com-setups {
+    margin-top: 25px;
+    margin-left: 50px;
+}
+
+.user-url {
+    display: flex;
+    flex-direction: row;
+}
+
+.username a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.username a:hover {
+    color: #b24949;
+}
+
+.car a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.car {
+    margin-top: 19px;
+}
+
+.checked {
+    color: orange;
+  }
