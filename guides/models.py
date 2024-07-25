@@ -18,6 +18,7 @@ class Car(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=128, null=False, blank=False)
     image = models.ImageField(upload_to='cars_imgs', blank=True)
+    front_image = models.ImageField(upload_to='car_front_looks', blank=True)
     
     def __str__(self):
         return f'{self.name}'
@@ -30,10 +31,3 @@ class Track(models.Model):
     
     def __str__(self):
         return self.name
-    
-class CarFrontLook(models.Model):
-    carId = models.ForeignKey(to='Car', on_delete=models.DO_NOTHING)
-    image = models.ImageField(upload_to='car_front_looks', blank=True)
-    
-    def __str__(self):
-        return f'{self.carId}'
