@@ -260,3 +260,18 @@ class UserSetupReview(ViewCountMixin, DetailView):
         context['title'] = context["object"]
         
         return context
+    
+    
+class AllCommunitySetups(ListView):
+    model = UserGuide
+    context_object_name = 'community_setups'
+    template_name = 'user/communitySetups.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # собираем все сетапы пользователей
+        community_setups = UserGuide.objects.all()
+        context['community_setups'] = community_setups
+        context['title'] = 'Пользовательские сетапы'
+        
+        return context
