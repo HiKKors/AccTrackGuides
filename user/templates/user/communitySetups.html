@@ -1,0 +1,70 @@
+{% extends 'news/base.html' %}
+
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/userSetups.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="com-setups">
+    {% for setup in community_setups %}
+        <div class="user-setup-preview-com">
+            <div class="car-preview">
+                <img src="{{setup.carName.front_image.url}}" alt="">
+            </div>
+            <div class="setup-info">
+                <div class="setup-parts">
+                    <div class="setup-part-title">
+                        <div class="img">
+                            <img width="25" height="25" src="https://img.icons8.com/ios/50/car--v1.png" alt="car--v1"/>
+                        </div>
+                        <div class="car" style="margin-left: 10px">
+                            <a href="{% url 'user:userSetupInfo' setup.id %}">{{setup.carName}}</a>
+                        </div>
+                    </div>
+                    <div class="setup-part-title" style="margin-left: 75px;">
+                        <div class="img">
+                            <img width="25" height="25" src="https://img.icons8.com/ios/50/stopwatch.png" alt="stopwatch"/>
+                        </div>
+                        <div class="pass-time" style="margin-left: 10px">
+                            <h4>{{setup.pass_time}}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="setup-part-title">
+                    <div class="img">
+                        <img width="25" height="25" src="https://img.icons8.com/external-kmg-design-detailed-outline-kmg-design/64/external-running-track-running-kmg-design-detailed-outline-kmg-design.png" alt="external-running-track-running-kmg-design-detailed-outline-kmg-design"/>
+                    </div>
+                    <div class="track" style="margin-left: 10px">
+                        <h4>{{setup.trackName}}</h4>
+                    </div>
+                </div>
+                
+                <div class="container">
+                    <div class="user-url">
+                        <div class="img-view">
+                            <img width="25" height="25" src="https://img.icons8.com/ios-filled/50/000000/motorbike-helmet.png" alt="motorbike-helmet"/>
+                        </div>
+                        <div class="username" style="margin-left: 10px">
+                            <a href="#">{{setup.userId}}</a>
+                        </div>
+                    </div>
+                    <div class="users-rating">
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
