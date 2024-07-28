@@ -8,11 +8,12 @@ from django.urls import reverse
 from django.contrib.auth.views import LoginView
 from django.views.generic.edit import FormView
 from django.contrib.auth.forms import UserCreationForm
+from django.views.generic.edit import UpdateView
 from django.urls import reverse_lazy
 
 from django.views.generic.list import ListView
 
-from .models import UserGuide
+from .models import UserGuide, User
 from guides.models import Track, Car
 
 from django.contrib.auth import login
@@ -275,3 +276,23 @@ class AllCommunitySetups(ListView):
         context['title'] = 'Пользовательские сетапы'
         
         return context
+    
+class Profile(DetailView):
+    model = User
+    context_object_name = 'account_details'
+    template_name = 'user/my_account.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.object
+        print(user.id)
+        
+        context['user_data'] = user
+        return context
+    
+class AccountDetailUpdateView(UpdateView):
+    model = User
+    fields = ['username', 'email', 'first_name', 'last_name']
+    template_name_suffix = '_update_form'
+    template_name = 'user/edit-account.html'
+    

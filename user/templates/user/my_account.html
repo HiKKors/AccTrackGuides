@@ -1,0 +1,23 @@
+{% extends 'news/base.html' %}
+
+{% block content %}
+<main>
+    <div class="profile-menu">
+        <ul>
+            <li>
+                <a href="#">Новый сетап</a>
+            </li>
+            <li>
+                <a href="#">Избранное</a>
+            </li>
+            <li>
+                <a href="{% url 'user:edit_profile' user.id %}">Детали профиля</a>
+            </li>
+            <li>
+                <a href="#">Выход</a>
+            </li>
+        </ul>
+    </div>
+</main>
+{% block profile-content %}{% endblock %}
+{% endblock %}
