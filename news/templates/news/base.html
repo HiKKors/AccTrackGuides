@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% block styles %}
     {% endblock %}
+    {% block scripts %}
+    {% endblock %}
 </head>
 <body style="background-color: rgb(41, 41, 40);">
     <header style="background-color: rgb(46, 47, 45);">
@@ -21,7 +23,11 @@
                     <a href="{% url 'guides-list' %}">Гайды</a>
                 </li>
                 <li class="menu-item">
-                    <a href="{% url 'user:community_setups' %}">Сетапы сообщества</a>
+                    {% if request.user.is_authenticated %}
+                        <a href="{% url 'user:community_setups' %}">Сетапы сообщества</a>
+                    {% else %}
+                        <a href="{% url 'user:login' %}">Сетапы сообщества</a>
+                    {% endif %}
                 </li>
             </ul>
         </div>
@@ -40,7 +46,7 @@
                         <a class="link" href="{% url 'user:my-setups' %}">Мои сетапы</a>
                     </li>
                     <li class="menu-item-user">
-                        <a class="link" href="#">Мой аккаунт</a>
+                        <a class="link" href="{% url 'user:profile' user.id %}">Мой аккаунт</a>
                     </li>
                     {% endif %}
                 {% else %}
