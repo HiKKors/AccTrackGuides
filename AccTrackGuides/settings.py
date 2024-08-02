@@ -132,6 +132,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "user.User" 
 
+# куда пользователь будет попадать после выхода из аккаунта
+LOGOUT_REDIRECT_URL = 'user:login'
 
 #пароль google
 'pdik axgr cdga tyrm'

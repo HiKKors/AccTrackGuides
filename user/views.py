@@ -5,7 +5,7 @@ from django.shortcuts import render, HttpResponsePermanentRedirect
 from django.contrib import auth
 from django.urls import reverse
 
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.views.generic.edit import FormView
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import UpdateView
@@ -18,13 +18,15 @@ from guides.models import Track, Car
 
 from django.contrib.auth import login
 
-from .forms import UserLoginForms, UserRegistrationForms, UserSetupForm
+from .forms import UserLoginForms, UserRegistrationForms, UserSetupForm, ChangePasswordForm
 
 from django.views.generic.edit import CreateView
 
 from django.views.generic.detail import DetailView
 
 from .mixins import ViewCountMixin
+
+from django.contrib.messages.views import SuccessMessageMixin
 
 # Create your views here.
 def login(request):
@@ -174,6 +176,7 @@ def addUserSetup(request):
         r_wing = request.POST.get('r_wing')
         r_brake_ducts = request.POST.get('r_brake_ducts')
 
+        # собираем данные в json
         user_setup.carSettings = {
             "lf_psi": lf_psi,
             "lf_toe": lf_toe,
@@ -275,6 +278,7 @@ class AllCommunitySetups(ListView):
         context['community_setups'] = community_setups
         context['title'] = 'Пользовательские сетапы'
         
+        
         return context
     
 class Profile(DetailView):
@@ -285,14 +289,40 @@ class Profile(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.object
-        print(user.id)
-        
         context['user_data'] = user
         return context
     
-class AccountDetailUpdateView(UpdateView):
+class AccountDetailUpdateView(SuccessMessageMixin,UpdateView):
     model = User
     fields = ['username', 'email', 'first_name', 'last_name']
     template_name_suffix = '_update_form'
     template_name = 'user/edit-account.html'
     
+    # user_id = model.objects.get()
+    
+    # print(user_id)
+ 
+    # success_url = f'user/profile/{user_id}'
+    success_message = 'Данные успешно обновлены'
+    
+    def get_success_url(self):
+        user_id = self.object.id
+        return reverse('user:profile', kwargs={'pk': user_id})
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        return context
+    
+class FavoriteSetupsView(ListView):
+    model = UserGuide 
+    template_name = 'user/favorite-setups.html'
+    context_object_name = 'favorites'   
+
+class UserPasswordChangeView(PasswordChangeView):
+    form_class = ChangePasswordForm
+    template_name = 'user/password_change_form.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # context['password_form'] = form_class
