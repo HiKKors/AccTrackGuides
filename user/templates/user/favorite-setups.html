@@ -3,5 +3,46 @@
 {% block profile-content %}
 <main>
     <h2 style="color: #fff;">Избранное</h2>
+    <div class="fav-setup">
+        {% if favorites %}
+            {% for f_guide in favorites %}
+                <div class="fav-setup">
+                    <div class="track">
+                        <div class="fs-image">
+                            <img width="20" height="20" src="https://img.icons8.com/external-kmg-design-detailed-outline-kmg-design/64/external-running-track-running-kmg-design-detailed-outline-kmg-design.png" alt="external-running-track-running-kmg-design-detailed-outline-kmg-design"/>
+                        </div>
+                        <div class="title">
+                            {{ f_guide.guide.trackName }}
+                        </div>
+                    </div>
+                    <div class="car">
+                        <div class="fs-image">
+                            <img width="20" height="20" src="https://img.icons8.com/ios/50/car--v1.png" alt="car--v1"/>
+                        </div>
+                        <div class="title">
+                            {{ f_guide.guide.carName }}
+                        </div>
+                    </div>
+                    <div class="time">
+                        <div class="fs-image">
+                            <img width="20" height="20" src="https://img.icons8.com/ios/50/stopwatch.png" alt="stopwatch"/>
+                        </div>
+                        <div class="title">
+                            {{ f_guide.guide.pass_time }}
+                        </div>
+                    </div>
+                    <div class="setup-owner">
+                        <div class="fs-image">
+                            <img width="20" height="20" src="https://img.icons8.com/ios-filled/50/000000/motorbike-helmet.png" alt="motorbike-helmet"/>
+                        </div>
+                        <div class="title">
+                            {{ f_guide.guide.userId.username }}
+                        </div>
+                    </div>
+
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
 </main>
 {% endblock %}
