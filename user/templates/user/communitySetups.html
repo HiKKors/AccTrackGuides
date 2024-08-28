@@ -6,6 +6,10 @@
 <link rel="stylesheet" href="{% static 'css/userSetups.css' %}">
 {% endblock %}
 
+{% block scripts %}
+<script src="{% static 'js/get_rating.js' %}"></script>
+{% endblock %}
+
 {% block content %}
 
 <div class="com-setups">
@@ -41,24 +45,32 @@
                         <h4>{{setup.trackName}}</h4>
                     </div>
                 </div>
-                
+                <div class="user-url">
+                    <div class="img-view">
+                        <img width="25" height="25" src="https://img.icons8.com/ios-filled/50/000000/motorbike-helmet.png" alt="motorbike-helmet"/>
+                    </div>
+                    <div class="username" style="margin-left: 10px">
+                        <a href="#">{{setup.userId}}</a>
+                    </div>
+                </div>
                 <div class="container">
-                    <div class="user-url">
-                        <div class="img-view">
-                            <img width="25" height="25" src="https://img.icons8.com/ios-filled/50/000000/motorbike-helmet.png" alt="motorbike-helmet"/>
+                    <div class="users-rating">
+                        <div class="likes-count">
+                            <img width="24" height="24" src="https://img.icons8.com/material-rounded/24/thumb-up.png" alt="thumb-up"/>
+                            {{setup.likes}}
                         </div>
-                        <div class="username" style="margin-left: 10px">
-                            <a href="#">{{setup.userId}}</a>
+                        <div class="dislikes-count">
+                            <img width="24" height="24" src="https://img.icons8.com/material-rounded/24/thumbs-down.png" alt="thumbs-down"/>
+                            {{setup.dislikes}}
                         </div>
                     </div>
-                    <div class="users-rating">
-                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
+                    <div class="views">
+                        <div class="img-view">
+                            <img width="25" height="25" src="https://img.icons8.com/sf-regular-filled/48/visible.png" alt="visible"/>
+                        </div>
+                        <div class="views-count">
+                            {{ setup.get_view_count }}
+                        </div>
                     </div>
                 </div>
                 
@@ -66,5 +78,35 @@
         </div>
     {% endfor %}
 </div>
+{% endblock %}
 
+{% block navigation %}
+    {% if page_obj.has_other_pages %}
+        <nav class="list-pages" >
+            <ul>
+                {% if page_obj.has_pervious %}
+                    <li class="prev-page">
+                        <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+                    </li>
+                {% endif %}
+
+                {% for p in paginator.page_range %}
+                {% if page_obj.number == p %}
+                    <li class="page-num page-num-selected">
+                        {{ p }}
+                    </li>
+                {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+                    <li class="page-num">
+                        <a href="?page={{ p }}">{{ p }}</a>         
+                    </li>
+                {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li class="prev-page">
+                        <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
 {% endblock %}
