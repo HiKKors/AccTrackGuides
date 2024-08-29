@@ -4,16 +4,17 @@ from django.shortcuts import render
 from django.shortcuts import render, HttpResponsePermanentRedirect
 from django.contrib import auth
 from django.urls import reverse
+from django.shortcuts import redirect
 
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.views.generic.edit import FormView
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, SetPasswordForm
 from django.views.generic.edit import UpdateView
 from django.urls import reverse_lazy
 
 from django.views.generic.list import ListView
 
-from .models import UserGuide, User
+from .models import UserGuide, User, UserGuideRating
 from guides.models import Track, Car
 
 from django.contrib.auth import login
@@ -261,11 +262,40 @@ class UserSetupReview(ViewCountMixin, DetailView):
         # Найти все гайды, связанные с той же машиной
         related_guides = UserGuide.objects.filter(carName=guide.carName.id)
         context['related_guides'] = related_guides
-        context['title'] = context["object"]
+        context['title'] = guide  # Исправлено
         
         return context
-    
-    
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        user = request.user
+        rating, created = UserGuideRating.objects.get_or_create(user=user, guide=self.object)
+
+        if 'like' in request.POST:
+            if not rating.liked and not rating.disliked:
+                self.object.likes += 1
+                rating.liked = True
+            elif rating.disliked:
+                self.object.dislikes -= 1
+                self.object.likes += 1
+                rating.disliked = False
+                rating.liked = True
+        elif 'dislike' in request.POST:
+            if not rating.disliked and not rating.liked:
+                self.object.dislikes += 1
+                rating.disliked = True
+            elif rating.liked:
+                self.object.likes -= 1
+                self.object.dislikes += 1
+                rating.liked = False
+                rating.disliked = True
+
+        self.object.save()
+        rating.save()
+        print('ID', self.object.id)
+        return redirect(reverse('user:userSetupInfo', kwargs={'pk': self.object.id}))
+
+
 class AllCommunitySetups(ListView):
     model = UserGuide
     context_object_name = 'community_setups'
@@ -325,4 +355,12 @@ class UserPasswordChangeView(PasswordChangeView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # context['password_form'] = form_class
+        print(context['form'])
+        
+        return context
+
+    def get_success_url(self):
+        return reverse_lazy('user:profile', kwargs={'pk': self.request.user})
+        
+        
+        

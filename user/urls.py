@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import login, registration, UserSetups, addUserSetup, UserSetupReview, AllCommunitySetups, Profile, AccountDetailUpdateView, FavoriteSetupsView
+from .views import login, registration, UserSetups, addUserSetup, UserSetupReview, AllCommunitySetups, Profile, AccountDetailUpdateView, FavoriteSetupsView, UserPasswordChangeView
 
 from django.contrib.auth.views import LogoutView
 
@@ -16,5 +16,6 @@ urlpatterns = [
     path('profile/<int:pk>', Profile.as_view(), name='profile'),
     path('profile/edit-account/<int:pk>', AccountDetailUpdateView.as_view(), name='edit-account'),
     path('logout/', LogoutView.as_view(), name='logout'),
-    path('profile/favorites/', FavoriteSetupsView.as_view(), name='favorites')
+    path('profile/favorites/<int:pk>', FavoriteSetupsView.as_view(), name='favorites'),
+    path('profile/change-password/<int:pk>', UserPasswordChangeView.as_view(), name='password_change' )
 ]

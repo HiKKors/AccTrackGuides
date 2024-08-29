@@ -12,6 +12,9 @@ class UserGuide(models.Model):
     carName = models.ForeignKey(to='guides.Car', on_delete=models.DO_NOTHING, related_name='guide_cars')
     pass_time = models.CharField(max_length=64, blank=False, null=False, default='0')
     rating = models.PositiveSmallIntegerField(default=0)
+    likes = models.IntegerField(default=0)
+    dislikes = models.IntegerField(default=0)
+    
     
     carSettings = models.JSONField()
     
@@ -33,3 +36,12 @@ class ViewCount(models.Model):
         verbose_name = 'Просмотр'
         verbose_name_plural = 'Просмотры'
         
+        
+class UserGuideRating(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    guide = models.ForeignKey(UserGuide, on_delete=models.CASCADE)
+    liked = models.BooleanField(default=False)
+    disliked = models.BooleanField(default=False)
+
+    class Meta:
+        unique_together = ('user', 'guide')

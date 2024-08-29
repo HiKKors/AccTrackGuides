@@ -14,7 +14,6 @@ from AccTrackGuides.celery import app
 #     cache_key = 'views.decorators.cache.cache_page.AllCommunitySetups.get'
 #     cache.delete(cache_key)
     
-@app.task() 
 @receiver(post_save, sender=UserGuide) #нужный запрос    таблица бд в которой происходит сохранение
 def rate_send_mail(sender, instance, **kwargs):
     request = get_current_request()
