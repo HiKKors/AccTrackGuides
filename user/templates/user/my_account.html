@@ -1,23 +1,30 @@
 {% extends 'news/base.html' %}
 
+{% load cache %}
+
 {% block content %}
 <main>
+    {% cache 600 profile-menu %}
     <div class="profile-menu">
         <ul>
-            <li>
-                <a href="#">Новый сетап</a>
+            <li class="profile-menu-item">
+                <a href="{% url 'user:favorites' user.id %}" class="profile-menu-item-a">Избранное</a>
+            </li>
+            <li class="profile-menu-item">
+                <a href="{% url 'user:edit-account' user.id %}" class="profile-menu-item-a">Детали профиля</a>
+            </li>
+            <li class="profile-menu-item">
+                <a href="{% url 'user:password_change' user.id %}" class="profile-menu-item-a">Изменение пароля</a>
             </li>
             <li>
-                <a href="#">Избранное</a>
-            </li>
-            <li>
-                <a href="{% url 'user:edit_profile' user.id %}">Детали профиля</a>
-            </li>
-            <li>
-                <a href="#">Выход</a>
+                <form action="{% url 'user:logout' %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" value="Выйти" class="logout-button">Выйти</button>
+                </form>
             </li>
         </ul>
     </div>
+    {% endcache %}
 </main>
 {% block profile-content %}{% endblock %}
 {% endblock %}

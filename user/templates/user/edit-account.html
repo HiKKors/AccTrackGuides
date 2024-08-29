@@ -1,9 +1,39 @@
 {% extends 'user/my_account.html' %}
 
 {% block profile-content %}
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Update">
-</form>
+<div class="edit-form">
+    <form method="post" action="{% url 'user:edit-account' user.id %}">
+        {% csrf_token %}
+        <div class="username-email">
+            <div class="edit-form-part">
+                <p>
+                    <label for="id_username">Никнейм</label>
+                    {{form.username}}
+                </p>
+            </div>
+            <div class="edit-form-part">
+                <p>
+                    <label for="id_email">Почта</label>
+                    {{form.email}}
+                </p>
+            </div> 
+        </div>
+        <div class="first_last-name">
+            <div class="edit-form-part">
+                <p>
+                    <label for="id_first_name">Имя</label>
+                    {{form.first_name}}
+                </p>
+            </div>
+            <div class="edit-form-part">
+                <p>
+                    <label for="id_last_name">Фамилия</label>
+                    {{form.last_name}}
+                </p>
+            </div>
+        </div>
+        <input type="submit" value="Сохранить">
+    </form>
+</div>
+
 {% endblock %}

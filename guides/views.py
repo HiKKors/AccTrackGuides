@@ -1,6 +1,6 @@
 from typing import Any
-from django.shortcuts import render
-
+from django.http import HttpRequest
+from django.http.response import HttpResponse as HttpResponse
 from .filters import GuideFilter
 
 from django.views.generic.list import ListView
@@ -8,11 +8,20 @@ from django.views.generic.detail import DetailView
 
 from .models import GuideData, Car, Track
 
-class Guides(ListView):
+from .utils import PaginateMixin
+
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
+
+class Guides(PaginateMixin, ListView):
     queryset = GuideData.objects.all()
     
     context_object_name = 'guides'
     template_name = 'Guides/guidesList.html'
+    
+    @method_decorator(cache_page(60 * 15))  # Кэширование на 15 минут
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
     
     # фильтрация данных
     def get_queryset(self):

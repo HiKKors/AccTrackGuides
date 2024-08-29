@@ -3,6 +3,7 @@
 {% load static %}
 
 {% block guide-info %}
+    <div class="setup-page">
         <div class="setup-info">
             <div class="main-title">
                 <h2 style="color: #fff;">{{guide.trackName}} {{guide.carName}} Настройка</h2>
@@ -44,11 +45,27 @@
                     </div>
                 </div>
                 <div class="users-rating">
-                    <div class="title"><h4>Оценка пользователей:</h4></div>
+                    <div class="likes-count">
+                        <img width="24" height="24" src="https://img.icons8.com/material-rounded/24/thumb-up.png" alt="thumb-up"/>
+                        {{guide.likes}}
+                    </div>
+                    <div class="dislikes-count">
+                        <img width="24" height="24" src="https://img.icons8.com/material-rounded/24/thumbs-down.png" alt="thumbs-down"/>
+                        {{guide.dislikes}}
+                    </div>
                 </div>
             </div>
             
         </div>
+        <div class="rate-setup">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <form action="{% url 'user:userSetupInfo' guide.id %}" method="POST">
+                {% csrf_token %}
+                <button class="fa fa-solid fa-3x fa-green fa-thumbs-up rate-button-like" name="like"></button>
+                <button class="fa fa-solid fa-3x fa-thumbs-down rate-button-dis" name="dislike"></button> 
+            </form>
+        </div>
+    </div>
 {% endblock %}
 
 {% block video %}

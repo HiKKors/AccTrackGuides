@@ -41,3 +41,67 @@ li {
     font-size: 14px;
 }
 
+.logout-button {
+    background-color: rgb(47, 47, 46);
+    border-radius: 10px;
+    border-color: rgb(209, 14, 14);
+    border-width: 2px;
+    color: rgb(209, 14, 14);
+    width: 75px;
+    height: 30px;
+}
+
+.profile-menu-item-a {
+    text-decoration: none;
+    
+
+    color: rgb(209, 14, 14);
+}
+
+.profile-menu-item {
+    padding: 7px 20px 7px 20px;
+    background-color: rgb(47, 47, 46);
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: rgb(209, 14, 14);
+}
+
+#id_email, #id_username, #id_first_name, #id_last_name {
+    color: #fff;
+    padding: 10px 250px 10px 10px;
+    background-color: rgb(52, 52, 51);
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: rgb(124, 86, 86);
+    border-style: double;
+}
+.username-email {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.first_last-name {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+label {
+    color: #efefef;
+}
+
+.edit-form {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+}
+
+.edit-form-part {
+    width: 25%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
