@@ -1,9 +1,11 @@
 {% extends 'guides/guide.html' %}
 
 {% load static %}
+{% load cache %}
 
 {% block guide-info %}
     <div class="setup-page">
+        
         <div class="setup-info">
             <div class="main-title">
                 <h2 style="color: #fff;">{{guide.trackName}} {{guide.carName}} Настройка</h2>
@@ -57,6 +59,7 @@
             </div>
             
         </div>
+        
         <div class="rate-setup">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             <form action="{% url 'user:userSetupInfo' guide.id %}" method="POST">
@@ -65,9 +68,39 @@
                 <button class="fa fa-solid fa-3x fa-thumbs-down rate-button-dis" name="dislike"></button> 
             </form>
         </div>
-    </div>
+        
+
 {% endblock %}
 
 {% block video %}
 <p></p>
 {% endblock %}
+
+{% block review%}
+    <form action="{% url 'user:userSetupInfo' guide.id %}" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" name="send_review" value="Отправить">
+    </form>
+    {% if comments %}
+        {% for comment in comments %}
+            <div class="comment">
+                <div class="comment_user">
+                    <div class="comment_user_avatar"><img width="40" height="40" src="https://img.icons8.com/ios/50/user-male-circle--v1.png" alt="user-male-circle--v1"/></div>
+                    <div class="comment_user_name">
+                        <a href="#">{{ comment.user_id.username }}</a>
+                    </div>
+                </div>
+                <div class="comment_text">
+                    <b>Комментарий</b>
+                    <p>{{ comment.review_text }}</p>
+                </div>
+            </div>
+            
+        {% endfor %}
+    {% else %}
+        <h2>Комментариев пока нет</h2>
+    {% endif %}
+{% endblock %}
+
+

@@ -14,12 +14,12 @@ from django.urls import reverse_lazy
 
 from django.views.generic.list import ListView
 
-from .models import UserGuide, User, UserGuideRating
+from .models import UserGuide, User, UserGuideRating, Review
 from guides.models import Track, Car
 
 from django.contrib.auth import login
 
-from .forms import UserLoginForms, UserRegistrationForms, UserSetupForm, ChangePasswordForm
+from .forms import ReviewForm, UserLoginForms, UserRegistrationForms, UserSetupForm, ChangePasswordForm
 
 from django.views.generic.edit import CreateView
 
@@ -28,6 +28,11 @@ from django.views.generic.detail import DetailView
 from .mixins import ViewCountMixin
 
 from django.contrib.messages.views import SuccessMessageMixin
+
+from .tasks import rate_send_mail
+
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 
 # Create your views here.
 def login(request):
@@ -256,23 +261,34 @@ class UserSetupReview(ViewCountMixin, DetailView):
     context_object_name = 'guide'
     template_name = 'user/userSetup.html'
     
+    # @method_decorator(cache_page(60 * 15)) 
+    # def dispatch(self, *args, **kwargs):
+    #     return super().dispatch(*args, **kwargs)
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         guide = self.object
-        # Найти все гайды, связанные с той же машиной
         related_guides = UserGuide.objects.filter(carName=guide.carName.id)
+        setup_comments = Review.objects.filter(user_guide=guide.id)
+        # print(setup_comments[5].review_text)
         context['related_guides'] = related_guides
-        context['title'] = guide  # Исправлено
-        
+        context['title'] = guide
+        context['form'] = ReviewForm
+        context['comments'] = setup_comments
         return context
 
     def post(self, request, *args, **kwargs):
+        print("POST")
         self.object = self.get_object()
         user = request.user
         rating, created = UserGuideRating.objects.get_or_create(user=user, guide=self.object)
+        review = Review.objects.create(user_id = user, user_guide = self.object)
 
         if 'like' in request.POST:
-            if not rating.liked and not rating.disliked:
+            if rating.liked:
+                rating.liked = rating.liked
+                rating.disliked = rating.disliked
+            elif not rating.liked and not rating.disliked:
                 self.object.likes += 1
                 rating.liked = True
             elif rating.disliked:
@@ -280,19 +296,33 @@ class UserSetupReview(ViewCountMixin, DetailView):
                 self.object.likes += 1
                 rating.disliked = False
                 rating.liked = True
+            
         elif 'dislike' in request.POST:
-            if not rating.disliked and not rating.liked:
+            if rating.disliked:
+                rating.liked = rating.liked
+                rating.disliked = rating.disliked
+            elif not rating.disliked and not rating.liked:
                 self.object.dislikes += 1
                 rating.disliked = True
-            elif rating.liked:
+            elif rating.liked and not rating.disliked:
                 self.object.likes -= 1
                 self.object.dislikes += 1
                 rating.liked = False
                 rating.disliked = True
-
+            
         self.object.save()
         rating.save()
-        print('ID', self.object.id)
+        
+        rate = 'liked' if 'like' in request.POST else 'disliked'
+        rate_send_mail.delay(request.user.username, rate)
+        
+        if 'send_review' in request.POST:
+            print("ОТЗЫВ", request.POST['review_text'])
+            review.review_text = request.POST['review_text']
+            
+        # self.object.save()
+        review.save()
+
         return redirect(reverse('user:userSetupInfo', kwargs={'pk': self.object.id}))
 
 

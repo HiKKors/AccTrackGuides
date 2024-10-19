@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, SetPasswordForm
 from django.forms import ModelForm, TextInput
 
-from .models import User, UserGuide
+from .models import Review, User, UserGuide
 
 class UserLoginForms(AuthenticationForm):
     username = forms.CharField(widget=forms.TextInput(attrs={
@@ -69,3 +69,8 @@ class ChangePasswordForm(SetPasswordForm):
                 'class': 'form-control',
                 'autocomplete': 'off'
             })
+            
+class ReviewForm(ModelForm):
+    class Meta:
+        model = Review
+        fields = ("review_text",)

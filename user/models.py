@@ -15,7 +15,6 @@ class UserGuide(models.Model):
     likes = models.IntegerField(default=0)
     dislikes = models.IntegerField(default=0)
     
-    
     carSettings = models.JSONField()
     
     def __str__(self):
@@ -26,6 +25,11 @@ class UserGuide(models.Model):
     
 class User(AbstractUser):
     username = models.CharField(max_length=128, unique=True)
+    
+class Review(models.Model):
+    user_guide = models.ForeignKey(to='UserGuide', on_delete=models.CASCADE)
+    user_id = models.ForeignKey(to='User', on_delete=models.CASCADE)
+    review_text = models.TextField(max_length=1000)
     
     
 class ViewCount(models.Model):
