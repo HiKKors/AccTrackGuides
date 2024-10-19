@@ -1,1 +1,7 @@
 Django==5.0.3
+Celery==5.4.0
+Redis==4.6.0
+django_toolbar==4.4.6
+django-background-tasks
+django-minio-backend==3.7.2
+minio==7.2.8
