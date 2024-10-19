@@ -1,6 +1,8 @@
 {% extends 'news/base.html' %}
 {% load static %}
 
+{% load cache %}
+
 {% block styles %}
 <link rel="stylesheet" href="{% static 'css/guide.css' %}">
 {% endblock %}
@@ -19,6 +21,7 @@
         </div>
     {% endblock %}
     <main>
+        {% cache 600 car-settings %}
         <div class="car-settings">
             <div class="tyres">
                 <div class="front-tyres-settings">
@@ -326,6 +329,8 @@
                 </div>
             </div>
         </div>
+        
+        {% endcache %}
         <div class="other-guides" style="color: #fff;">
             <h3>Другие гайды для {{ guide.carName.name }}</h3>
             {% for other_guide in related_guides %}
@@ -334,6 +339,8 @@
         </div>
     </main>
 
-
+    {% block review%}
+    {% endblock %}
 {% endblock %}
+
 
