@@ -12,6 +12,13 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 
+from datetime import timedelta
+from typing import List, Tuple
+
+import os
+import certifi
+import urllib3
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -41,6 +48,8 @@ INSTALLED_APPS = [
     'guides',
     'user.apps.UserConfig',
     'debug_toolbar',
+    # 'background_task',
+    # 'django_minio_backend.apps.DjangoMinioBackendConfig',
 ]
 
 MIDDLEWARE = [
@@ -162,7 +171,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'nk041496@gmail.com' 
-EMAIL_HOST_PASSWORD = 'xzxq gqor pakw yxgg'
+EMAIL_HOST_PASSWORD = 'xumb vync eovn eufr'
 
 # кэширование с помощью redis
 CACHES = {
@@ -180,3 +189,43 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Europe/Moscow'
+CELERY_LOG_LEVEL = 'DEBUG'
+CELERY_LOG_FILE = 'AccTrackGuides/celery.log'
+
+# MINIO_CONSISTENCY_CHECK_ON_START = True
+
+
+# MINIO_ENDPOINT = 'localhost:9000'
+# MINIO_EXTERNAL_ENDPOINT = "external-minio.your-company.co.uk"  # Default is same as MINIO_ENDPOINT
+# MINIO_EXTERNAL_ENDPOINT_USE_HTTPS = True  # Default is same as MINIO_USE_HTTPS
+# MINIO_REGION = 'us-east-1'  # Default is set to None
+# MINIO_ACCESS_KEY = 'yourMinioAccessKey'
+# MINIO_SECRET_KEY = 'yourVeryS3cr3tP4ssw0rd'
+# MINIO_USE_HTTPS = True
+# MINIO_URL_EXPIRY_HOURS = timedelta(days=1)  # Default is 7 days (longest) if not defined
+# MINIO_CONSISTENCY_CHECK_ON_START = True
+# MINIO_PRIVATE_BUCKETS = [
+#     'django-backend-dev-private',
+# ]
+# MINIO_PUBLIC_BUCKETS = [
+#     'django-backend-dev-public',
+# ]
+# MINIO_POLICY_HOOKS: List[Tuple[str, dict]] = []
+# # MINIO_MEDIA_FILES_BUCKET = 'my-media-files-bucket'  # replacement for MEDIA_ROOT
+# # MINIO_STATIC_FILES_BUCKET = 'my-static-files-bucket'  # replacement for STATIC_ROOT
+# MINIO_BUCKET_CHECK_ON_SAVE = True  # Default: True // Creates bucket if missing, then save
+
+
+# timeout = timedelta(minutes=5).seconds
+# ca_certs = os.environ.get('SSL_CERT_FILE') or certifi.where()
+# MINIO_HTTP_CLIENT: urllib3.poolmanager.PoolManager = urllib3.PoolManager(
+#     timeout=urllib3.util.Timeout(connect=timeout, read=timeout),
+#     maxsize=10,
+#     cert_reqs='CERT_REQUIRED',
+#     ca_certs=ca_certs,
+#     retries=urllib3.Retry(
+#         total=5,
+#         backoff_factor=0.2,
+#         status_forcelist=[500, 502, 503, 504]
+#     )
+# )
